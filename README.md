@@ -15,7 +15,19 @@
 
 ### 方法一：一键安装/恢复 (推荐)
 
-如果你已经把脚本上传到了 NAS，直接运行：
+直接运行：
 
 ```bash
-sudo bash install.sh
+    curl -fsSL https://raw.githubusercontent.com/Molirain-jy/ugos-ipv6-tool/main/install.sh | sudo bash
+```
+
+### 方法二
+
+```bash
+    vi install.sh
+```
+
+```bash
+   chmod +x install.sh
+   sudo ./install.sh
+```
