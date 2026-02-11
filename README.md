@@ -31,3 +31,32 @@
    chmod +x install.sh
    sudo ./install.sh
 ```
+
+⚙️ 配置文件
+后缀存储在以下文件，你可以随时修改它，然后重启服务生效：
+
+```bash
+# 修改后缀
+nano /etc/ipv6_token.txt
+
+# 重启服务生效
+systemctl restart ipv6-fixed-token.service
+```
+工作原理
+该工具会在 /usr/local/bin 创建一个生成脚本，并注册为 Systemd 服务。 每次开机或网络重启时：
+
+读取 /etc/ipv6_token.txt。
+
+修复内核参数 net.ipv6.conf.eth0.accept_ra = 2 (解决 Docker 冲突)。
+
+生成带有随机中间段的 IPv6 Token。
+
+注入内核并刷新地址。
+
+⚠️ 注意事项
+防火墙设置：在路由器防火墙放行时，请匹配后缀。例如 ::1f67/::ffff:ffff:ffff:ffff。
+
+UGOS 更新：每次系统大版本更新后，配置可能会丢失。只需重新运行一次 install.sh 即可恢复。
+
+📄 License
+MIT License
